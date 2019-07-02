@@ -3,14 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
   title = 'ngx-search-box-demo';
-
-
-  clear() {
-    console.log('chamou clear');
-  }
-
 }

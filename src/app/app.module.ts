@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxSearchBoxModule } from './ngx-search-box/ngx-search-box.module';
+import { NgxSearchBoxModule } from 'projects/ngx-search-box/src/public-api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,8 +12,9 @@ import { NgxSearchBoxModule } from './ngx-search-box/ngx-search-box.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
+    AppRoutingModule, 
+    FormsModule,
+    ReactiveFormsModule,
     NgxSearchBoxModule
   ],
   providers: [],

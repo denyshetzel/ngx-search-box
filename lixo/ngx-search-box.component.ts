@@ -1,6 +1,5 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild, OnDestroy, ElementRef, ViewContainerRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { debounceTime, skip } from 'rxjs/operators';
 
@@ -20,6 +19,7 @@ import { debounceTime, skip } from 'rxjs/operators';
 export class NgxSearchBoxComponent implements OnInit, ControlValueAccessor, OnDestroy {
 
   value: any;
+  private overlayRef: OverlayRef;  
 
   @ViewChild(MatInput) input: MatInput;
 
@@ -70,8 +70,10 @@ export class NgxSearchBoxComponent implements OnInit, ControlValueAccessor, OnDe
   // constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
-    private overlay: Overlay, 
-    private viewContainerRef: ViewContainerRef) {}
+    private host: ElementRef<HTMLInputElement>,  
+    private ngControl: NgControl,  
+    private vcr: ViewContainerRef,  
+    private overlay: Overlay) {}
 
   ngOnDestroy() {
     this.closeInfoOverlay();

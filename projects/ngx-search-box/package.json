@@ -1,0 +1,11 @@
+{
+  "name": "ngx-search-box",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.0.3",
+    "@angular/core": "^8.0.3",
+    "@angular/material": "^8.0.1",
+    "@angular/animations": "^8.0.3",
+    "@angular/cdk": "^8.0.1"
+  }
+}

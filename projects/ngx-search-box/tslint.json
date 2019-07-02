@@ -1,16 +1,16 @@
 {
-  "extends": "../tslint.json",
+  "extends": "../../tslint.json",
   "rules": {
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "ngxsb",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "ngxsb",
       "kebab-case"
     ]
   }
