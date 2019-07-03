@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxSearchBoxModule } from 'projects/ngx-search-box/src/public-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSearchBoxPanelModule } from 'projects/ngx-search-box-panel/src/public-api';
 
 @NgModule({
   declarations: [
@@ -12,10 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    FormsModule,
-    ReactiveFormsModule,
-    NgxSearchBoxModule
+    NgxSearchBoxPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

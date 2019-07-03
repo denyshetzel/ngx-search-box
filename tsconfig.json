@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "ngx-search-box": [
-        "dist/ngx-search-box"
+      "ngx-search-box-panel": [
+        "dist/ngx-search-box-panel"
       ],
-      "ngx-search-box/*": [
-        "dist/ngx-search-box/*"
+      "ngx-search-box-panel/*": [
+        "dist/ngx-search-box-panel/*"
       ]
     }
   }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-search-box-demo": {
+    "ngx-search-box-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-search-box-demo",
+            "outputPath": "dist/ngx-search-box-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-search-box-demo:build"
+            "browserTarget": "ngx-search-box-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-search-box-demo:build:production"
+              "browserTarget": "ngx-search-box-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-search-box-demo:build"
+            "browserTarget": "ngx-search-box-app:build"
           }
         },
         "test": {
@@ -110,43 +110,43 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-search-box-demo:serve"
+            "devServerTarget": "ngx-search-box-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-search-box-demo:serve:production"
+              "devServerTarget": "ngx-search-box-app:serve:production"
             }
           }
         }
       }
     },
-    "ngx-search-box": {
+    "ngx-search-box-panel": {
       "projectType": "library",
-      "root": "projects/ngx-search-box",
-      "sourceRoot": "projects/ngx-search-box/src",
-      "prefix": "ngxsb",
+      "root": "projects/ngx-search-box-panel",
+      "sourceRoot": "projects/ngx-search-box-panel/src",
+      "prefix": "nsp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ngx-search-box/tsconfig.lib.json",
-            "project": "projects/ngx-search-box/ng-package.json"
+            "tsConfig": "projects/ngx-search-box-panel/tsconfig.lib.json",
+            "project": "projects/ngx-search-box-panel/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-search-box/src/test.ts",
-            "tsConfig": "projects/ngx-search-box/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-search-box/karma.conf.js"
+            "main": "projects/ngx-search-box-panel/src/test.ts",
+            "tsConfig": "projects/ngx-search-box-panel/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-search-box-panel/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-search-box/tsconfig.lib.json",
-              "projects/ngx-search-box/tsconfig.spec.json"
+              "projects/ngx-search-box-panel/tsconfig.lib.json",
+              "projects/ngx-search-box-panel/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -155,5 +155,5 @@
         }
       }
     }},
-  "defaultProject": "ngx-search-box-demo"
+  "defaultProject": "ngx-search-box-app"
 }
