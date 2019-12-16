@@ -43,12 +43,12 @@ export class NgxSearchBoxComponent implements OnInit {
   }
 
   handleSearch($event) {
-    console.log(this.value);
+    console.log('handleSearch', this.value);
     this.stopPropagation(event);
     this.search.emit(this.value);
   }
 
-  open($event) {
+  open() {
     if (this.dropdown.opened) {
       this.close();    
     }else{

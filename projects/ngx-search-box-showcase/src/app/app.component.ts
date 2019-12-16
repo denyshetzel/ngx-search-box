@@ -4,6 +4,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface GithubApi {
   items: GithubIssue[];
@@ -36,10 +38,12 @@ export class GitIssueService {
 })
 export class AppComponent {
 
-  displayedColumns: string[] = ['created', 'state', 'number', 'title'];
-  gitIssueService: GitIssueService | null;
-  data: GithubIssue[] = [];
+  options: FormGroup;
 
+  displayedColumns: string[] = ['number', 'title', 'created', 'state'];
+  gitIssueService: GitIssueService | null;
+  // data: GithubIssue[] = [];
+  data: MatTableDataSource<GithubIssue>;
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -47,7 +51,13 @@ export class AppComponent {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient, formBuilder: FormBuilder) {
+
+    this.options = formBuilder.group({
+      hideRequired: false,
+      floatLabel: 'auto',
+    });
+  }
 
   ngAfterViewInit() {
     this.gitIssueService = new GitIssueService(this._httpClient);
@@ -74,16 +84,18 @@ export class AppComponent {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.data = data);
+      )
+      //.subscribe(data => this.data = data);
+      .subscribe(data => this.data = new MatTableDataSource(data));
   }
 
   search(value:string){
     console.log(value);
-      //this.dataSource.filter = value.trim().toLowerCase();
+    this.data.filter = value.trim().toLowerCase();
   }
 
   clear(){
-      //this.dataSource.filter = '';
+      this.data.filter = '';
   }
 
 }
