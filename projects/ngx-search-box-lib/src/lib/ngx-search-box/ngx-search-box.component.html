@@ -1,0 +1,26 @@
+<div class="ngx-searchbox-wrapper" #dropreference >
+    <mat-form-field floatLabel="never" [appearance]="appearance" class="search-input-fieldd" >
+      <div class="ngx-searchbox">
+          <input matInput 
+            #searchInput
+            type="search"
+            [(ngModel)]="value"
+            [disabled]="disabled"
+            [placeholder]="placeholder"
+            (keyup.enter)="handleSearch($event)" >
+          <mat-icon 
+            *ngIf="searchInput.value"
+            mat-icon-button aria-label="Clear"
+            (click)="clearSearch()">close</mat-icon>
+          <mat-icon 
+            *ngIf="!opened" 
+            mat-button mat-icon-button 
+            (click)="open($event)">arrow_drop_down</mat-icon>
+      </div>
+    </mat-form-field>
+    <panel-dropdown [reference]="dropreference" #dropdownComp >
+      <div class="mat-elevation-z8 panel-dropdown-container">
+        <ng-content></ng-content>
+      </div>
+    </panel-dropdown>
+  </div>

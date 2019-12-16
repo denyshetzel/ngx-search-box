@@ -19,12 +19,19 @@
       "dom"
     ],
     "paths": {
-      "ngx-search-box-panel": [
-        "dist/ngx-search-box-panel"
+      "ngx-search-box-lib": [
+        "dist/ngx-search-box-lib"
       ],
-      "ngx-search-box-panel/*": [
-        "dist/ngx-search-box-panel/*"
+      "ngx-search-box-lib/*": [
+        "dist/ngx-search-box-lib/*"
+      ],
+      "@angular/*": [
+        "./node_modules/@angular/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

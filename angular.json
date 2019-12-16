@@ -3,32 +3,67 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-search-box-app": {
+    "ngx-search-box-lib": {
+      "projectType": "library",
+      "root": "projects/ngx-search-box-lib",
+      "sourceRoot": "projects/ngx-search-box-lib/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-search-box-lib/tsconfig.lib.json",
+            "project": "projects/ngx-search-box-lib/ng-package.json",
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-search-box-lib/src/test.ts",
+            "tsConfig": "projects/ngx-search-box-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-search-box-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-search-box-lib/tsconfig.lib.json",
+              "projects/ngx-search-box-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-search-box-showcase": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/ngx-search-box-showcase",
+      "sourceRoot": "projects/ngx-search-box-showcase/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-search-box-app",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/ngx-search-box-showcase",
+            "index": "projects/ngx-search-box-showcase/src/index.html",
+            "main": "projects/ngx-search-box-showcase/src/main.ts",
+            "polyfills": "projects/ngx-search-box-showcase/src/polyfills.ts",
+            "tsConfig": "projects/ngx-search-box-showcase/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ngx-search-box-showcase/src/favicon.ico",
+              "projects/ngx-search-box-showcase/src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "projects/ngx-search-box-showcase/src/styles.scss"
             ],
             "scripts": []
           },
@@ -36,8 +71,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ngx-search-box-showcase/src/environments/environment.ts",
+                  "with": "projects/ngx-search-box-showcase/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -54,6 +89,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -62,33 +102,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-search-box-app:build"
+            "browserTarget": "ngx-search-box-showcase:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-search-box-app:build:production"
+              "browserTarget": "ngx-search-box-showcase:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-search-box-app:build"
+            "browserTarget": "ngx-search-box-showcase:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "projects/ngx-search-box-showcase/src/test.ts",
+            "polyfills": "projects/ngx-search-box-showcase/src/polyfills.ts",
+            "tsConfig": "projects/ngx-search-box-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-search-box-showcase/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ngx-search-box-showcase/src/favicon.ico",
+              "projects/ngx-search-box-showcase/src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "projects/ngx-search-box-showcase/src/styles.scss"
             ],
             "scripts": []
           }
@@ -97,9 +137,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "projects/ngx-search-box-showcase/tsconfig.app.json",
+              "projects/ngx-search-box-showcase/tsconfig.spec.json",
+              "projects/ngx-search-box-showcase/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -109,51 +149,16 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-search-box-app:serve"
+            "protractorConfig": "projects/ngx-search-box-showcase/e2e/protractor.conf.js",
+            "devServerTarget": "ngx-search-box-showcase:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-search-box-app:serve:production"
+              "devServerTarget": "ngx-search-box-showcase:serve:production"
             }
           }
         }
       }
-    },
-    "ngx-search-box-panel": {
-      "projectType": "library",
-      "root": "projects/ngx-search-box-panel",
-      "sourceRoot": "projects/ngx-search-box-panel/src",
-      "prefix": "nsp",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-search-box-panel/tsconfig.lib.json",
-            "project": "projects/ngx-search-box-panel/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-search-box-panel/src/test.ts",
-            "tsConfig": "projects/ngx-search-box-panel/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-search-box-panel/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-search-box-panel/tsconfig.lib.json",
-              "projects/ngx-search-box-panel/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }},
-  "defaultProject": "ngx-search-box-app"
+  "defaultProject": "ngx-search-box-lib"
 }
